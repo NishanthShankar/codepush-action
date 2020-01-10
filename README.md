@@ -1,23 +1,19 @@
 # GitHub Actions for Firebase
 
-This Action for [firebase-tools](https://github.com/firebase/firebase-tools) enables arbitrary actions with the `firebase` command-line client.
+This Action for [appcenter codepush](https://github.com/microsoft/appcenter-cli) enables arbitrary actions with the `appcenter` command-line client.
 
 ## Inputs
 
-* `args` - **Required**. This is the arguments you want to use for the `firebase` cli
+* `args` - **Required**. This is the arguments you want to use for the `appcenter` cli
 
 
 ## Environment variables
 
-* `FIREBASE_TOKEN` - **Required**. The token to use for authentication. This token can be aquired through the `firebase login:ci` command.
-
-* `PROJECT_ID` - **Optional**. To specify a specific project to use for all commands, not required if you specify a project in your `.firebaserc` file.
-
-* `PROJECT_PATH` - **Optional**. The path to `firebase.json` if it doesn't exist at the root of your repository. e.g. `./my-app`
+* `APPCENTER_ACCESS_TOKEN` - **Required**. The token to use for authentication. This token can be aquired through the `appcenter dashboard`.
 
 ## Example
 
-To authenticate with Firebase, and deploy to Firebase Hosting:
+To authenticate with Codepush, and deploy to Codepush:
 
 ```yaml
 name: Build and Deploy
@@ -27,48 +23,27 @@ on:
       - master
 
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
       - name: Install Dependencies
         run: npm install
-      - name: Build
-        run: npm run build-prod
-      - name: Archive Production Artifact
-        uses: actions/upload-artifact@master
+      - name: Deploy to Codepush
+        uses: NishanthShankar/codepush-action@master
         with:
-          name: dist
-          path: dist
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
-      - name: Download Artifact
-        uses: actions/download-artifact@master
-        with:
-          name: dist
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
+          args: release-react -d Production
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          APPCENTER_ACCESS_TOKEN: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
 ```
 
-If you have multiple hosting environments you can specify which one in the args line. 
-e.g. `args: deploy --only hosting:[environment name]`
 
 ## License
 
 The Dockerfile and associated scripts and documentation in this project are released under the [MIT License](LICENSE).
 
 
-### Recommendation
-
-If you decide to do seperate jobs for build and deployment (which is probably advisable), then make sure to clone your repo as the Firebase-cli requires the firebase repo to deploy (specifically the `firebase.json`)
+### Credits
+Thanks to [Jeremy Shore](https://github.com/w9jds) for the firebase-action repo.
