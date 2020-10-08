@@ -11,7 +11,7 @@ if [ -z $directory ]; then
 else
   echo "Input directory provided:"
   echo "$directory"
-  cd "$(dirname "$0")/$directory"
+  cd "$(dirname "$0")$directory"
   cd "$directory"
 fi
 
