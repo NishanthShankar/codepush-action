@@ -17,7 +17,7 @@ if [ -z $directory ]; then
 else
   echo "Input directory provided:"
   echo "$directory"
-  cd "$(dirname "$0")$directory"
+  cd "$directory"
 fi
 
 if [ -z "$APPCENTER_ACCESS_TOKEN" ]; then
