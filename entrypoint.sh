@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ -z "${INPUT_directory}" ]]; then
+if [ -z "${INPUT_directory}" ]; then
   # No input directory provided
   cd "$(dirname "$0")/.."
 else
