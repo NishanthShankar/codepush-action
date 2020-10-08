@@ -4,14 +4,7 @@ set -e
 args=$1
 directory=$2
 
-echo "PWD:"
-echo $PWD
-
-echo "LS:"
-ls
-
 if [ -z $directory ]; then
-  echo "No input directory provided"
   # No input directory provided
   cd "$(dirname "$0")/.."
 else
