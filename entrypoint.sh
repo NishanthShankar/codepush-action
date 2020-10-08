@@ -2,14 +2,14 @@
 
 set -e
 
-if [ -z "${INPUT_directory}" ]; then
+if [ -z "${INPUT_DIRECTORY}" ]; then
   echo "No input directory provided"
   # No input directory provided
   cd "$(dirname "$0")/.."
 else
   echo "Input directory provided:"
-  echo "${INPUT_directory}"
-  cd "${INPUT_directory}"
+  echo "${INPUT_DIRECTORY}"
+  cd "${INPUT_DIRECTORY}"
 fi
 
 echo "PWD:"

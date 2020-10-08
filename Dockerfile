@@ -12,6 +12,9 @@ LABEL com.github.actions.color="gray-dark"
 
 RUN npm install -g appcenter-cli
 
+ARG directory
+ENV INPUT_DIRECTORY=directory
+
 COPY LICENSE README.md /
 COPY "entrypoint.sh" "/entrypoint.sh"
 
