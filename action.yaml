@@ -7,8 +7,9 @@ branding:
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  with:
-    build-args: directory: ${{ inputs.directory }}
+  args:
+    - ${{ inputs.args }}
+    - ${{ inputs.directory }}
 inputs:
   directory:
     description: 'Directory from which to run the command'

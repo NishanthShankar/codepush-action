@@ -1,15 +1,18 @@
 #!/bin/sh -l
 
 set -e
+args=$1
+directory=$2
 
-if [ -z "${INPUT_DIRECTORY}" ]; then
+if [ -z $directory ]; then
   echo "No input directory provided"
   # No input directory provided
   cd "$(dirname "$0")/.."
 else
   echo "Input directory provided:"
-  echo "${INPUT_DIRECTORY}"
-  cd "${INPUT_DIRECTORY}"
+  echo "$directory"
+  cd "$(dirname "$0")/$directory"
+  cd "$directory"
 fi
 
 echo "PWD:"
@@ -21,4 +24,4 @@ if [ -z "$APPCENTER_ACCESS_TOKEN" ]; then
 fi
 
 
-sh -c "appcenter codepush $*"
+sh -c "appcenter codepush $args"
