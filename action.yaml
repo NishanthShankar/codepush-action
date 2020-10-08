@@ -7,3 +7,6 @@ branding:
 runs:
   using: 'docker'
   image: 'Dockerfile'
+inputs:
+  directory:
+    description: 'Directory from which to run the command'

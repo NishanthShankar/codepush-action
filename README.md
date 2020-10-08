@@ -4,6 +4,7 @@ This Action for [appcenter codepush](https://github.com/microsoft/appcenter-cli)
 
 ## Inputs
 
+* `directory` - Directory from which to run the command
 * `args` - **Required**. This is the arguments you want to use for the `appcenter` cli
 
 

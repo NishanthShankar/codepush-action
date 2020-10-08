@@ -4,8 +4,12 @@
 # Exit if any subcommand fails
 set -e
 
-# Ensure we're always running from the project root
-cd "$(dirname "$0")/.."
+if [[ -z "${INPUT_directory}" ]]; then
+  # No input directory provided
+  cd "$(dirname "$0")/.."
+else
+  cd "${INPUT_directory}"
+fi
 
 if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
   brew bundle check >/dev/null 2>&1  || {
