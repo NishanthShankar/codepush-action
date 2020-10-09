@@ -1,9 +1,13 @@
+# Credit to Author
+This project was forked from https://github.com/NishanthShankar/codepush-action and updated to use a working directory argument. This was needed to make the action work for a monorepo environment.
+
 # GitHub Actions for Firebase
 
 This Action for [appcenter codepush](https://github.com/microsoft/appcenter-cli) enables arbitrary actions with the `appcenter` command-line client.
 
 ## Inputs
 
+* `directory` - Directory from which to run the command
 * `args` - **Required**. This is the arguments you want to use for the `appcenter` cli
 
 
